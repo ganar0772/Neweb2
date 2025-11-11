@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>¡ATENCIÓN! ARCHIVOS ENCRIPTADOS</title>
+<style>
+  html,body{height:100%;margin:0}
+  body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(180deg,#200000,#0b0000);
+    font-family: Inter, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+    color:#fff;
+  }
+  .panel{
+    width:95%;
+    max-width:900px;
+    padding:28px;
+    border-radius:12px;
+    background: linear-gradient(180deg,#340000,#180000);
+    box-shadow:0 10px 40px rgba(0,0,0,0.6);
+    text-align:center;
+    border:3px solid rgba(255,0,0,0.18);
+  }
+  h1{color:#ff4444;margin:6px 0 8px;font-size:34px;letter-spacing:0.5px}
+  p.lead{color:#ffc9c9;margin:6px 0 18px;font-size:18px}
+  .big{
+    background:#ff1f1f;
+    color:#120000;
+    display:inline-block;
+    padding:18px 28px;
+    border-radius:8px;
+    font-weight:700;
+    font-size:22px;
+    box-shadow:0 6px 20px rgba(255,31,31,0.18);
+  }
+  .countdown{font-size:48px;margin:16px 0;color:yellow;text-shadow:0 2px 6px rgba(0,0,0,0.6)}
+  .actions{margin-top:18px}
+  button{
+    background:#ff6b6b;border:none;padding:12px 18px;border-radius:10px;font-size:16px;color:#120000;cursor:pointer;margin:6px;
+  }
+  button.secondary{background:transparent;color:#ffdede;border:2px solid rgba(255,255,255,0.06)}
+  .notes{margin-top:18px;color:#ffdede;background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;font-size:13px}
+  .footer{margin-top:12px;color:#ffb3b3;font-size:13px}
+</style>
+</head>
+<body>
+  <div class="panel" role="main" aria-labelledby="title">
+    <h1 id="title">¡ATENCIÓN! ARCHIVOS ENCRIPTADOS</h1>
+    <p class="lead">Tus archivos han sido cifrados. Para recuperarlos debes pagar el rescate.</p>
+    <div class="big" id="status">REQUERIMIENTO: 3.5 BTC</div>
+
+    <div class="countdown" id="count">00:01:00</div>
+
+    <div class="actions">
+      <button id="payBtn">Ver instrucciones de pago</button>
+      <button class="secondary" id="restoreBtn">Intentar restaurar</button>
+    </div>
+
+    <div id="note" class="notes">Archivos comprometidos. Sigue las instrucciones.</div>
+
+    <div class="footer">PAGA</div>
+  </div>
+
+<script>
+(function(){
+  // Cambia este número a cualquier cantidad de segundos
+  let secs = 86400; // Ejemplo: 8000 segundos (~2 horas, 13 minutos, 20 segundos)
+  const countEl = document.getElementById('count');
+
+  function fmt(s){
+    const h = Math.floor(s / 3600).toString().padStart(2,'0');       // horas
+    const m = Math.floor((s % 3600) / 60).toString().padStart(2,'0'); // minutos
+    const sec = (s % 60).toString().padStart(2,'0');                  // segundos
+    return `${h}:${m}:${sec}`;
+  }
+
+  countEl.textContent = fmt(secs);
+
+  const t = setInterval(()=>{
+    if(secs>0) secs--;
+    countEl.textContent = fmt(secs);
+
+    if(secs===0){
+      clearInterval(t);
+      document.getElementById('status').textContent = 'ARCHIVOS LIBERADOS';
+      document.getElementById('note').textContent = 'Proceso completado.';
+      document.getElementById('payBtn').disabled = true;
+    }
+  },1000);
+})();
+
+// comportamiento de botones (solo visual)
+document.getElementById('payBtn').addEventListener('click', ()=>{
+  alert('Instrucciones: enviar pago según indicaciones.');
+});
+
+document.getElementById('restoreBtn').addEventListener('click', ()=>{
+  document.getElementById('status').textContent = 'INTENTO DE RESTAURACIÓN EN PROCESO';
+  setTimeout(()=>{
+    document.getElementById('status').textContent = 'INTENTO FALLIDO';
+    document.getElementById('note').textContent = 'Acción completada.';
+  },1500);
+});
+</script>
+</body>
+</html>

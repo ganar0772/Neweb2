@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>¡ATENCIÓN! ARCHIVOS ENCRIPTADOS</title>
+<title>Ejemplo Educativo: Simulación de Encriptación</title>
 <style>
   html,body{height:100%;margin:0}
   body{
@@ -48,32 +48,31 @@
 </head>
 <body>
   <div class="panel" role="main" aria-labelledby="title">
-    <h1 id="title">¡ATENCIÓN! ARCHIVOS ENCRIPTADOS</h1>
-    <p class="lead">Tus archivos han sido cifrados. Para recuperarlos debes pagar el rescate.</p>
-    <div class="big" id="status">REQUERIMIENTO: 3.5 BTC</div>
+    <h1 id="title">Ejemplo Educativo: Simulación de Encriptación</h1>
+    <p class="lead">¡Esto es solo un ejemplo! Tus archivos no están realmente en peligro.</p>
+    <div class="big" id="status">REQUERIMIENTO: 0 BTC (Solo prueba)</div>
 
-    <div class="countdown" id="count">00:01:00</div>
+    <div class="countdown" id="count">00:00:10</div>
 
     <div class="actions">
-      <button id="payBtn">Ver instrucciones de pago</button>
+      <button id="payBtn">Ver "instrucciones"</button>
       <button class="secondary" id="restoreBtn">Intentar restaurar</button>
     </div>
 
-    <div id="note" class="notes">Archivos comprometidos. Sigue las instrucciones.</div>
+    <div id="note" class="notes">Esta simulación es educativa y segura.</div>
 
-    <div class="footer">PAGA</div>
+    <div class="footer">¡Solo un ejemplo!</div>
   </div>
 
 <script>
 (function(){
-  // Cambia este número a cualquier cantidad de segundos
-  let secs = 86400; // Ejemplo: 8000 segundos (~2 horas, 13 minutos, 20 segundos)
+  let secs = 10; // Temporizador corto para demo
   const countEl = document.getElementById('count');
 
   function fmt(s){
-    const h = Math.floor(s / 3600).toString().padStart(2,'0');       // horas
-    const m = Math.floor((s % 3600) / 60).toString().padStart(2,'0'); // minutos
-    const sec = (s % 60).toString().padStart(2,'0');                  // segundos
+    const h = Math.floor(s / 3600).toString().padStart(2,'0');
+    const m = Math.floor((s % 3600) / 60).toString().padStart(2,'0');
+    const sec = (s % 60).toString().padStart(2,'0');
     return `${h}:${m}:${sec}`;
   }
 
@@ -85,23 +84,22 @@
 
     if(secs===0){
       clearInterval(t);
-      document.getElementById('status').textContent = 'ARCHIVOS LIBERADOS';
-      document.getElementById('note').textContent = 'Proceso completado.';
+      document.getElementById('status').textContent = 'ARCHIVOS SIMULADOS LIBERADOS';
+      document.getElementById('note').textContent = 'Demo completada.';
       document.getElementById('payBtn').disabled = true;
     }
   },1000);
 })();
 
-// comportamiento de botones (solo visual)
 document.getElementById('payBtn').addEventListener('click', ()=>{
-  alert('Instrucciones: enviar pago según indicaciones.');
+  alert('Esto es solo una simulación educativa. No envíes dinero.');
 });
 
 document.getElementById('restoreBtn').addEventListener('click', ()=>{
-  document.getElementById('status').textContent = 'INTENTO DE RESTAURACIÓN EN PROCESO';
+  document.getElementById('status').textContent = 'INTENTO DE RESTAURACIÓN SIMULADO';
   setTimeout(()=>{
-    document.getElementById('status').textContent = 'INTENTO FALLIDO';
-    document.getElementById('note').textContent = 'Acción completada.';
+    document.getElementById('status').textContent = 'RESTauración DEMO COMPLETADA';
+    document.getElementById('note').textContent = 'Solo un ejemplo educativo.';
   },1500);
 });
 </script>
